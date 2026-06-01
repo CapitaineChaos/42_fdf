@@ -43,11 +43,11 @@ typedef struct s_proj		t_proj;
 typedef struct s_fdf		t_fdf;
 
 # ifndef WIDTH
-#  define WIDTH 0
+#  define WIDTH 1600
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 0
+#  define HEIGHT 1000
 # endif
 
 # define V_CONIC 0x63

@@ -66,14 +66,6 @@ ALL_OBJS	  	:= $(ALL_SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBS			:= libft/$(LIBFT) minilibx-linux/$(MINILIBX)
 
 
-ifneq (,$(filter small,$(MAKECMDGOALS)))
-    OPTFLAGS = -DHEIGHT=800 -DWIDTH=800
-endif
-
-ifneq (,$(filter big,$(MAKECMDGOALS)))
-    OPTFLAGS = -DHEIGHT=1200 -DWIDTH=1200
-endif
-
 all: $(NAME) bonus
 
 $(LIBFT):
@@ -94,7 +86,7 @@ $(NAME): $(LIBFT) $(MINILIBX) $(ALL_OBJS) $(HEADERS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	echo "Compilation de $<"
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -I$(INC_DIR) -c $<  $(OPTFLAGS) -o $@
+	@$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 clean:
 	@$(MAKE) -C libft/ clean
@@ -111,6 +103,6 @@ re: fclean all
 bonus:
 
 test: all
-	./fdf
+	./fdf test_maps/42.fdf
 
 .PHONY: all clean fclean re bonus small big
